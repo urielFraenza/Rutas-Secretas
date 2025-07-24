@@ -1,0 +1,34 @@
+async function agregarAlCarrito(paquete, precio) {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    alert("Por favor, inicia sesión para agregar al carrito.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:4000/api/auth/carrito", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ paquete, precio, cantidad: 1 }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      alert(data.msg || "Producto añadido al carrito.");
+      // Redirigir al formulario de compra con los datos del paquete
+      window.location.href = `formPago.html?paquete=${encodeURIComponent(
+        paquete
+      )}&precio=${precio}`;
+    } else {
+      alert(data.msg || "Error al agregar al carrito.");
+    }
+  } catch (err) {
+    console.error("Error al agregar al carrito:", err);
+    alert("Ocurrió un error al intentar agregar el producto al carrito.");
+  }
+}

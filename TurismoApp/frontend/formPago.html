@@ -1,0 +1,20 @@
+document.addEventListener("DOMContentLoaded", function () {
+  const paquete = getParam("paquete") || "No seleccionado";
+  const precio = parseFloat(getParam("precio")) || 0;
+
+  // Mostrar paquete seleccionado
+  document.getElementById(
+    "paquete-info"
+  ).textContent = `Paquete seleccionado: ${paquete} ($${precio} USD por persona)`;
+
+  // Calcular total
+  const cantidad = document.getElementById("cantidad");
+  const totalPagar = document.getElementById("total-pagar");
+  function calcularTotal() {
+    const cant = parseInt(cantidad.value) || 0;
+    const total = precio * cant;
+    totalPagar.textContent = `Total a pagar: $${total} USD`;
+  }
+  cantidad.addEventListener("input", calcularTotal);
+  calcularTotal();
+});

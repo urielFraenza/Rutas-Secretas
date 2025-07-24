@@ -1,1 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+     <link rel="icon" href="recursos/logo.jpeg" type="image/jpeg">
+  <title>Ruta secreta</title>
+  <link rel="stylesheet" href="estilos/inicio.css">
+</head>
+<body>
+  <button onclick="window.location.href='index.html'" class="inicio-btn">Inicio</button>
+  <!--logo-->
+  <img src="recursos/logo.jpeg" alt="Logo de Ruta Secreta" class="logo-img">
 
+  <!-- Menú de navegación superior -->
+  <div class="navbar-acordeon-wrapper">
+    <nav class="navbar" id="navbar">
+      <div class="logo">🌍 Ruta Secreta</div>
+      <div class="nav-links">
+        <a href="#inicio" class="nav-link">Inicio</a>
+        <a href="#excursiones" class="nav-link">Excursiones</a>
+        <a href="#destinos" class="nav-link">Destinos</a>
+        <a href="#contacto" class="nav-link">Contacto</a>
+      </div>
+      <div class="auth-links">
+        <a href="login.html" class="nav-link login-link">Iniciar sesión</a>
+        <a href="registro.html" class="nav-link register-link">Registrarse</a>
+      </div>
+      <div id="user-info" class="user-info"></div>
+    </nav>
+
+    <!-- El acordeón aparecerá aquí -->
+    <div id="acordeon-container"></div>
+  </div>
+
+  <!-- Sección Agente Mejorada -->
+  <section class="agent-banner" id="agentBanner">
+    <div class="agent-text">
+      <h1>MI AGENTE DE RUTAS SECRETAS</h1>
+      <p>Elegí el canal más conveniente para vos y comprá con atención personalizada</p>
+      <div class="agent-contact">
+        <a href="mailto:RutaSecreta@gmail.com" class="agent-contact-btn">
+          <i class="fas fa-envelope">Email</i> 
+        </a>
+        <a href="tel:+1234567890" class="agent-contact-btn">
+          <i class="fas fa-phone">Teléfono
+        </a></i> 
+        <a href="https://wa.me/1234567890" target="_blank" rel="noopener" class="agent-contact-btn whatsapp">
+          <i class="fab fa-whatsapp">WhatsApp</i> 
+        </a>
+      </div>
+    </div>
+    <div class="agent-right">
+      <img src="recursos/agentes.jpg" alt="Agente de atención al cliente" loading="lazy" />
+    </div>
+  </section>
+
+  <!-- Carrusel SIEMPRE visible debajo del menú -->
+  <div class="carrusel-container">
+    <button class="carrusel-arrow left" id="prevBtn">&#8592;</button>
+    <div class="carrusel-img-wrapper">
+      <img id="carrusel-img" src="recursos/Japon.jfif" alt="Imagen carrusel">
+    </div>
+    <button class="carrusel-arrow right" id="nextBtn">&#8594;</button>
+  </div>
+
+   <section class="beneficios">
+    <h2>¿porque elegir Rutas Secretas?</h2>
+    <div class="items">
+      <div>
+        <i class="fas fa-dollar-sign"></i>
+        <h3>Precios accesibles</h3>
+        <p>Los mejores precios del mercado garantizados</p>
+      </div>
+      <div>
+        <i class="fas fa-shield-alt"></i>
+        <h3>viajes seguros</h3>
+        <p>Asistencia 24/7 en todo el mundo.</p>
+      </div>
+      <div>
+        <i class="fas fa-star"></i>
+        <h3>Clientes satisfechos</h3>
+        <p>Mas de 20.000 viajeros felices.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-columns">
+      <div class="footer-column">
+        <h3>Contacto</h3>
+        <p>Email: RutaSecreta@gmail.com</p>
+        <p>Tel: +54 11 1234 5678</p>
+      </div>
+      <div class="footer-column">
+        <h3>Enlaces</h3>
+        <a href="#home">Inicio</a>
+        <a href="#nosotros">Sobre Nosotros</a>
+        <a href="#contacto">Contacto</a>
+        <a href="#privacidad">Política de Privacidad</a>
+      </div>
+      <div class="footer-column">
+        <h3>Seguinos</h3>
+        <div class="social-icons">
+          <a href="https://facebook.com" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook-square"></i></a>
+          <a href="https://instagram.com" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://twitter.com" target="_blank" rel="noopener" title="Twitter"><i class="fab fa-twitter-square"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 Rutas Secretas. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <script src="scripts/inicio.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const userInfo = document.getElementById('user-info');
+      const nombre = localStorage.getItem('nombre');
+      const rol = localStorage.getItem('rol');
+      if (nombre) {
+        userInfo.textContent = `Bienvenido, ${nombre}`;
+        if (rol === 'admin') {
+          userInfo.textContent += ' (Administrador)';
+        } else if (rol === 'jefe') {
+          userInfo.textContent += ' (Jefe de Ventas)';
+        }
+      }
+    });
+  </script>
+  <div id="bienvenida" class="bienvenida"></div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const userInfo = document.getElementById('bienvenida');
+      const nombre = localStorage.getItem('nombre');
+      if (nombre) {
+        userInfo.textContent = `¡Bienvenido, ${nombre}!`;
+        userInfo.style.textAlign = 'center';
+        userInfo.style.fontSize = '1.5rem';
+        userInfo.style.margin = '20px 0';
+        userInfo.style.color = '#0056b3';
+      }
+    });
+  </script>
+</body>
+<style>
+  .inicio-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #00b894;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 150, 136, 0.2);
+  }
+  .inicio-btn:hover {
+    background: #0056b3;
+  }
+</style>
