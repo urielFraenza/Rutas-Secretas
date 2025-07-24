@@ -1,0 +1,154 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paquetes de Viaje</title>
+    <link rel="stylesheet" href="estilos/link.css">
+</head>
+<body>
+    <header>
+        <h1>Descubre Nuestros Increíbles Paquetes de Viaje</h1>
+        <p>¡Explora el mundo con nosotros!</p>
+    </header>
+
+    <div class="container">
+        <div class="package-card">
+            <img src="recursos/playa.jpg" alt="Playa Caribeña">
+            <div class="package-content">
+                <h3>Escapada al Caribe</h3>
+                <p>Disfruta de 7 noches en un resort todo incluido en las hermosas playas del Caribe. Incluye vuelos, alojamiento y actividades acuáticas.</p>
+                <ul>
+                    <li>Vuelos de ida y vuelta</li>
+                    <li>7 Noches de alojamiento</li>
+                    <li>Todo incluido (comidas y bebidas)</li>
+                    <li>Traslados aeropuerto-hotel</li>
+                </ul>
+                <div class="price">$1200 USD</div>
+                <button class="button" onclick="window.location.href='formPago.html?paquete=Escapada%20al%20Caribe&precio=1200'">Comprar</button>
+            </div>
+        </div>
+
+        <div class="package-card">
+            <img src="recursos/paragonia.png" alt="Aventura en la Montaña">
+            <div class="package-content">
+                <h3>Aventura en la Patagonia</h3>
+                <p>Explora los paisajes impresionantes de la Patagonia argentina y chilena. 5 días de trekking, glaciares y naturaleza pura.</p>
+                <ul>
+                    <li>Vuelos internos</li>
+                    <li>5 Noches de alojamiento en cabañas</li>
+                    <li>Guía de trekking profesional</li>
+                    <li>Comidas incluidas en excursiones</li>
+                </ul>
+                <div class="price">$950 USD</div>
+                <button class="button" onclick="window.location.href='formPago.html?paquete=Aventura%20en%20la%20Patagonia&precio=950'">Comprar</button>
+            </div>
+        </div>
+
+        <div class="package-card">
+            <img src="recursos/culturaEuropea.jpg" alt="Cultura Europea">
+            <div class="package-content">
+                <h3>Tour Clásico por Europa</h3>
+                <p>Recorre las ciudades más icónicas de Europa en un viaje de 10 días. Visita París, Roma y Barcelona con guías locales.</p>
+                <ul>
+                    <li>Vuelos internacionales</li>
+                    <li>10 Noches de alojamiento en hoteles 4 estrellas</li>
+                    <li>Trenes entre ciudades</li>
+                    <li>Tours guiados en cada ciudad</li>
+                </ul>
+                <div class="price">$1800 USD</div>
+                <button class="button" onclick="window.location.href='formPago.html?paquete=Tour%20Clásico%20por%20Europa&precio=1800'">Comprar</button>
+            </div>
+        </div>
+
+        <div class="package-card">
+            <img src="recursos/cultura.jpg" alt="Ruta Cultural">
+            <div class="package-content">
+                <h3>Ruta Maya</h3>
+                <p>Sumérgete en la historia y cultura maya con un viaje de 8 días por México y Guatemala. Descubre antiguas ruinas y tradiciones.</p>
+                <ul>
+                    <li>Vuelos internacionales</li>
+                    <li>8 Noches de alojamiento</li>
+                    <li>Transporte terrestre entre sitios arqueológicos</li>
+                    <li>Entradas a todos los sitios y museos</li>
+                </ul>
+                <div class="price">$1100 USD</div>
+                <button class="button" onclick="window.location.href='formPago.html?paquete=Ruta%20Maya&precio=1100'">Comprar</button>
+            </div>
+        </div>
+
+        <div class="package-card">
+            <img src="recursos/RioDeJaneiro.jpg" alt="Rio de Janeiro ">
+            <div class="package-content">
+                <h3>Escapada a Rio de Janeiro</h3>
+                <p>Disfruta de 7 noches en un resort todo incluido en las hermosas playas de Rio de Janeiro. Incluye vuelos, alojamiento, actividades acuáticas y de playas.</p>
+                <ul>
+                    <li>Vuelos de ida y vuelta</li>
+                    <li>7 Noches de alojamiento</li>
+                    <li>Todo incluido (comidas y bebidas)</li>
+                    <li>Traslados aeropuerto-hotel</li>
+                </ul>
+                <div class="price">$1500 USD</div>
+                <button class="button" onclick="window.location.href='formPago.html?paquete=Escapada%20a%20Rio%20de%20Janeiro&precio=1500'">Comprar</button>
+            </div>
+        </div>  
+
+        <div class="package-card">
+            <img src="recursos/tokio.jpg" alt="Tokio">
+            <div class="package-content">
+                <h3>Tour por Tokio</h3>
+                <p>Disfruta de 7 noches en un resort todo incluido en la ciudad de Tokio. Incluye vuelos, alojamiento y tour turístico.</p>
+                <ul>
+                    <li>Vuelos de ida y vuelta</li>
+                    <li>7 Noches de alojamiento</li>
+                    <li>Todo incluido (comidas y bebidas)</li>
+                </ul>
+                <div class="price">$4000 USD</div>
+                <button class="button" onclick="window.location.href='formPago.html?paquete=Tour%20por%20Tokio&precio=4000'">Comprar</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Tu Agencia de Viajes. Todos los derechos reservados.</p>
+        <p>Contacto: RutaSecreta@gmail.com | Tel: +123 456 7890</p>
+    </footer>
+</body>
+</html>
+=======
+async function agregarAlCarrito(paquete, precio) {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    alert("Por favor, inicia sesión para agregar al carrito.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:4000/api/auth/carrito", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ paquete, precio, cantidad: 1 }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      alert(data.msg || "Producto añadido al carrito.");
+      // Redirigir al formulario de compra con los datos del paquete
+      window.location.href = `formPago.html?paquete=${encodeURIComponent(
+        paquete
+      )}&precio=${precio}`;
+    } else {
+      alert(data.msg || "Error al agregar al carrito.");
+    }
+  } catch (err) {
+    console.error("Error al agregar al carrito:", err);
+    alert("Ocurrió un error al intentar agregar el producto al carrito.");
+  }
+}
+>>>>>>> d1f155d4729865ac7d7ac1dfc43557631c4e424f

@@ -1,0 +1,165 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    color: #222;
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    padding: 32px 0 24px 0;
+    background: #0056b3; /* Cambiado para unificar con navbar */
+    color: white;
+    border-radius: 0 0 18px 18px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 16px rgba(0,86,179,0.10);
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: center;
+    align-items: stretch;
+    max-width: 1300px;
+    margin: auto;
+    padding: 0 16px;
+}
+
+.package-card {
+    background: #fff;
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(44, 62, 80, 0.13);
+    width: 320px;
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+    position: relative;
+}
+
+.package-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 8px 32px rgba(44, 62, 80, 0.18);
+}
+
+.package-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+    transition: filter 0.2s;
+}
+
+.package-card:hover img {
+    filter: brightness(0.92) saturate(1.1);
+}
+
+.package-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 18px 16px 16px 16px;
+}
+
+.package-content h3 {
+    margin-top: 0;
+    color: #0056b3;
+    font-size: 1.25em;
+    margin-bottom: 8px;
+}
+
+.package-content p {
+    font-size: 0.97em;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.package-content ul {
+    padding-left: 18px;
+    margin: 0 0 10px 0;
+    font-size: 0.95em;
+    color: #444;
+}
+
+.price {
+    font-size: 1.15em;
+    font-weight: bold;
+    color: #28a745;
+    margin-top: auto;
+    text-align: right;
+    letter-spacing: 1px;
+}
+
+.button {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    background: linear-gradient(90deg, #00b894 60%, #0056b3 100%);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+    margin-top: 18px;
+    font-weight: bold;
+    font-size: 1.05em;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 2px 8px rgba(0,86,179,0.08);
+    border: none;
+}
+
+.button:hover {
+    background: linear-gradient(90deg, #0056b3 60%, #00b894 100%);
+    transform: scale(1.04);
+    color: #e0f7fa;
+}
+
+footer {
+    text-align: center;
+    padding: 28px 0 16px 0;
+    margin-top: 40px;
+    color: #555;
+    border-top: 1px solid #eee;
+    background: #f8fafc;
+    border-radius: 18px 18px 0 0;
+    box-shadow: 0 -2px 8px rgba(44, 62, 80, 0.04);
+    font-size: 1em;
+}
+
+@media (max-width: 900px) {
+    .container {
+        gap: 20px;
+    }
+    .package-card {
+        width: 90vw;
+        min-width: 220px;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        font-size: 0.95em;
+        padding: 18px 0 12px 0;
+       border-radius: 0 0 10px 10px;
+    }
+    .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        padding: 0 4px;
+    }
+    .package-card {
+        width: 98vw;
+        min-width: 0;
+        border-radius: 10px;
+    }
+    footer {
+        border-radius: 10px 10px 0 0;
+        font-size: 0.95em;
+    }
+}

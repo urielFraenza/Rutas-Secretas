@@ -1,0 +1,227 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    color: #222;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.formulario, .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(44, 62, 80, 0.13);
+    width: 420px;
+    max-width: 95vw;
+    margin: 40px auto;
+    gap: 1.5rem;
+    animation: aparecer 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(40px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+h1 {
+    color: #0056b3;
+    font-size: 2.1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+    text-align: center;
+}
+
+h2 {
+    color: #515253;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    position: relative;
+}
+
+label {
+    margin-bottom: 0.3rem;
+    color: #333;
+    font-weight: 500;
+}
+
+input,
+select {
+    padding: 0.6rem 0.8rem;
+    border: 1.5px solid #00b894;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    outline: none;
+    background: #e0f7fa;
+}
+
+input:focus,
+select:focus {
+    border-color: #0056b3;
+    background: #b2ebf2;
+    box-shadow: 0 0 0 2px #00b89433;
+}
+
+.mensaje-error {
+    color: #d90429;
+    font-size: 0.93em;
+    min-height: 1em;
+    transition: color 0.2s;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+}
+
+.guia .opciones-guia {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.3rem;
+}
+
+.opciones-guia label {
+    font-weight: 400;
+    color: #00796b;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.opciones-guia input[type="radio"] {
+    accent-color: #26a69a;
+    margin-right: 0.3em;
+}
+
+button,
+button[type="submit"] {
+    margin-top: 1rem;
+    padding: 0.8rem 0;
+    background: linear-gradient(90deg, #00b894 60%, #0056b3 100%);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.13rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,86,179,0.08);
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 1px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+}
+
+button:hover,
+button[type="submit"]:hover {
+    background: linear-gradient(90deg, #0056b3 60%, #00b894 100%);
+    transform: translateY(-2px) scale(1.03);
+    color: #e0f7fa;
+}
+
+#datos-personales {
+    width: 100%;
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 1px solid #b2ebf2;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    animation: aparecer 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+#datos-personales h2 {
+    color: #0056b3;
+    margin-bottom: 1rem;
+}
+
+#datos-personales p {
+    margin-bottom: 10px;
+    font-size: 1.01em;
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #00b894;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.05em;
+    transition: color 0.2s;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+footer {
+    text-align: center;
+    padding: 28px 0 16px 0;
+    margin-top: 40px;
+    color: #555;
+    border-top: 1px solid #eee;
+    background: #f8fafc;
+    border-radius: 18px 18px 0 0;
+    box-shadow: 0 -2px 8px rgba(44, 62, 80, 0.04);
+    font-size: 1em;
+}
+
+/* --- Carrusel Caption --- */
+.carrusel-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(0,86,179,0.82) 60%, rgba(0,184,148,0.68) 100%);
+  color: #fff;
+  font-size: 1.18em;
+  padding: 18px 32px 16px 32px;
+  border-radius: 0 0 18px 18px;
+  text-align: left;
+  box-shadow: 0 8px 32px rgba(0,86,179,0.18);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(2px);
+  opacity: 0.96;
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  pointer-events: none;
+}
+
+/* --- Fin de archivo --- */
+
+@media (max-width: 600px) {
+    .formulario, .container {
+        width: 98vw;
+        padding: 1.2rem 0.5rem;
+        border-radius: 10px;
+    }
+    form {
+        gap: 0.8rem;
+    }
+    h1 {
+        font-size: 1.3em;
+    }
+    footer {
+        border-radius: 10px 10px 0 0;
+        font-size: 0.95em;
+    }
+}

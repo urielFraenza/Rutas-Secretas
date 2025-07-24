@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" href="recursos/logo.jpeg" type="image/jpeg" />
+    <title>Gestión de Paquetes y Clientes</title>
+    <link rel="stylesheet" href="estilos/estilo.css" />
+  </head>
+  <body>
+    <button onclick="window.location.href='index.html'" class="inicio-btn">
+      Inicio
+    </button>
+    <div class="formulario">
+      <h1>Gestión de Paquetes y Clientes</h1>
+      <div id="bienvenida" class="bienvenida"></div>
+      <section>
+        <h2>Clientes Registrados</h2>
+        <table id="clientes-table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Fecha de Registro</th>
+              <th>Compras</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+      <section>
+        <h2>Editar Paquetes</h2>
+        <form id="editar-paquete-form">
+          <label for="paquete">Nombre del paquete:</label>
+          <input type="text" id="paquete" name="paquete" required />
+          <label for="descripcion">Descripción:</label>
+          <textarea id="descripcion" name="descripcion" required></textarea>
+          <label for="precio">Precio:</label>
+          <input type="number" id="precio" name="precio" required />
+          <button type="submit">Actualizar Paquete</button>
+        </form>
+      </section>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        const token = localStorage.getItem("token");
+        const nombre = localStorage.getItem("nombre");
+        if (!token) {
+          alert("Acceso denegado");
+          window.location.href = "login.html";
+          return;
+        }
+        const bienvenida = document.getElementById("bienvenida");
+        if (nombre) {
+          bienvenida.textContent = `¡Bienvenido, ${nombre}!`;
+          bienvenida.style.textAlign = "center";
+          bienvenida.style.fontSize = "1.5rem";
+          bienvenida.style.margin = "20px 0";
+          bienvenida.style.color = "#0056b3";
+        }
+
+        // Obtener clientes
+        const resClientes = await fetch(
+          "http://localhost:4000/api/auth/clientes",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        const clientes = await resClientes.json();
+        const clientesTable = document.querySelector("#clientes-table tbody");
+        clientes.forEach((cliente) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+          <td>${cliente.nombre}</td>
+          <td>${cliente.correo}</td>
+          <td>${new Date(cliente.createdAt).toLocaleDateString()}</td>
+          <td>${cliente.carrito.length} compras</td>
+        `;
+          clientesTable.appendChild(row);
+        });
+
+        // Editar paquete
+        const form = document.getElementById("editar-paquete-form");
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const paquete = document.getElementById("paquete").value;
+          const descripcion = document.getElementById("descripcion").value;
+          const precio = document.getElementById("precio").value;
+          const res = await fetch("http://localhost:4000/api/auth/paquetes/1", {
+            // Cambiar ID dinámicamente
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ paquete, descripcion, precio }),
+          });
+          const data = await res.json();
+          alert(data.msg);
+        });
+      });
+    </script>
+    <style>
+      .inicio-btn {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background: #00b894;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        z-index: 1000;
+        box-shadow: 0 2px 8px rgba(0, 150, 136, 0.2);
+      }
+      .inicio-btn:hover {
+        background: #0056b3;
+      }
+    </style>
+  </body>
+</html>

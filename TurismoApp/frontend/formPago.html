@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RUTAS SECRETAS - Compra</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="estilos/estilo.css">
+    <style>
+        .total-pagar {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #28a745;
+            margin: 1em 0 0.5em 0;
+            text-align: right;
+        }
+        .paquete-seleccionado {
+            background: #e0f7fa;
+            border-radius: 8px;
+            padding: 1em;
+            margin-bottom: 1em;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="formulario">
+        <h1>RUTAS SECRETAS</h1>
+        <h2>¡Confirmá tu compra!</h2>
+        <div id="paquete-info" class="paquete-seleccionado"></div>
+        <form id="form-compra" autocomplete="off">
+            <div class="campo">
+                <label for="nombre">Nombre completo</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <span class="mensaje-error"></span>
+            </div>
+            <div class="campo">
+                <label for="correo">Correo electrónico</label>
+                <input type="email" id="correo" name="correo" required>
+                <span class="mensaje-error"></span>
+            </div>
+            <div class="campo">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" pattern="[0-9]{8,15}" required>
+                <span class="mensaje-error"></span>
+            </div>
+            <div class="campo">
+                <label for="cantidad">Cantidad</label>
+                <input type="number" id="cantidad" name="cantidad" min="1" value="1" required>
+                <span class="mensaje-error"></span>
+            </div>
+            <div class="campo">
+                <label for="metodo-pago">Método de Pago</label>
+                <select id="metodo-pago" name="metodo-pago" required>
+                    <option value="">Selecciona un método</option>
+                    <option value="tarjeta">Tarjeta de Crédito/Débito</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="transferencia">Transferencia Bancaria</option>
+                </select>
+                <span class="mensaje-error"></span>
+            </div>
+            <div class="campo">
+                <label for="tarjeta">Número de tarjeta</label>
+                <input type="number" id="tarjeta" name="tarjeta" min="1" required>
+                <span class="mensaje-error"></span>
+            </div>
+            <div class="total-pagar" id="total-pagar">
+                Total a pagar: $0 USD
+            </div>
+            <button type="submit">Pagar</button>
+        </form>
+    </div>
+    <script>
+    // Lee los parámetros de la URL
+    function getParam(name) {
+        const url = new URL(window.location.href);
+        return url.searchParams.get(name);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const paquete = getParam("paquete") || "No seleccionado";
+        const precio = parseFloat(getParam("precio")) || 0;
+
+        // Mostrar paquete seleccionado
+        document.getElementById(
+          "paquete-info"
+        ).textContent = `Paquete seleccionado: ${paquete} ($${precio} USD por persona)`;
+
+        // Calcular total
+        const cantidad = document.getElementById("cantidad");
+        const totalPagar = document.getElementById("total-pagar");
+        function calcularTotal() {
+          const cant = parseInt(cantidad.value) || 0;
+          const total = precio * cant;
+          totalPagar.textContent = `Total a pagar: $${total} USD`;
+        }
+        cantidad.addEventListener("input", calcularTotal);
+        calcularTotal();
+
+        // Validación en tiempo real
+        const form = document.getElementById("form-compra");
+        const campos = form.querySelectorAll("input, select");
+        const mensajes = form.querySelectorAll(".mensaje-error");
+
+        campos.forEach((campo, idx) => {
+            campo.addEventListener("input", function () {
+                validarCampo(campo, mensajes[idx]);
+            });
+        });
+
+        function validarCampo(campo, mensaje) {
+            if (!campo.checkValidity()) {
+                if (campo.validity.valueMissing) {
+                    mensaje.textContent = "Este campo es obligatorio.";
+                } else if (campo.type === "email" && campo.validity.typeMismatch) {
+                    mensaje.textContent = "Ingrese un correo válido.";
+                } else if (campo.name === "telefono" && campo.validity.patternMismatch) {
+                    mensaje.textContent = "Ingrese solo números (8-15 dígitos).";
+                } else if (campo.type === "number" && campo.validity.rangeUnderflow) {
+                    mensaje.textContent = "Debe ser mayor a 0.";
+                } else if (campo.tagName === "SELECT" && campo.value === "") {
+                    mensaje.textContent = "Seleccione una opción.";
+                } else {
+                    mensaje.textContent = "Dato inválido.";
+                }
+            } else {
+                mensaje.textContent = "";
+            }
+        }
+
+        form.addEventListener("submit", function (e) {
+            let valido = true;
+            campos.forEach((campo, idx) => {
+                validarCampo(campo, mensajes[idx]);
+                if (!campo.checkValidity()) valido = false;
+            });
+
+            if (!valido) {
+                e.preventDefault();
+                return;
+            }
+
+            alert(`¡Compra confirmada!\nPaquete: ${paquete}\nTotal: $${(precio * parseInt(cantidad.value || 0))} USD\nGracias por confiar en RUTAS SECRETAS.`);
+            form.reset();
+            calcularTotal();
+            e.preventDefault();
+        });
+    });
+    </script>
+</body>
+</html>
